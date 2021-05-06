@@ -1,6 +1,7 @@
 package org.uresti.pozarreal.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,7 @@ public class StreetServiceImpl implements StreetsService {
     @Transactional(readOnly = true)
     public StreetInfo getStreetInfo(String streetId) {
 
-        Street street = streetRepository.findById(streetId).orElseThrow();
+        Street street = streetRepository.findById(streetId).orElseThrow(() -> new NoSuchElementException());
         StreetInfo streetInfo = new StreetInfo();
 
         streetInfo.setId(streetId);

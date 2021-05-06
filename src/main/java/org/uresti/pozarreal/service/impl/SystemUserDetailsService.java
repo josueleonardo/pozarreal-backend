@@ -2,7 +2,6 @@ package org.uresti.pozarreal.service.impl;
 
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -61,13 +60,13 @@ public class SystemUserDetailsService {
         String picture = (String) attributes.get("picture");
         String name = (String) attributes.get("name");
 
-        User user = userRepository.findByEmail(email).or(() -> registerUser(email, picture, name)).orElseThrow();
+        User user = userRepository.findByEmail(email).orElseGet(() -> registerUser(email, picture, name));
 
         rolesRepository.findRolesByUser(user.getId()).forEach(role ->
                 mappedAuthorities.add(new SimpleGrantedAuthority(role)));
     }
 
-    private Optional<User> registerUser(String email, String picture, String name) {
+    private User registerUser(String email, String picture, String name) {
         User user = new User();
 
         user.setId(UUID.randomUUID().toString());
@@ -84,6 +83,6 @@ public class SystemUserDetailsService {
 
         loginRepository.save(login);
 
-        return Optional.of(user);
+        return user;
     }
 }
