@@ -13,11 +13,8 @@ import org.uresti.pozarreal.service.StreetsService;
 
 @Service
 public class StreetServiceImpl implements StreetsService {
-
     private final StreetRepository streetRepository;
-
     private final RepresentativeRepository representativeRepository;
-
     private final HousesRepository housesRepository;
 
     public StreetServiceImpl(StreetRepository streetRepository,

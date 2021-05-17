@@ -11,6 +11,7 @@ import org.uresti.pozarreal.model.Street;
 import org.uresti.pozarreal.repository.HousesRepository;
 import org.uresti.pozarreal.repository.RepresentativeRepository;
 import org.uresti.pozarreal.repository.StreetRepository;
+import org.uresti.pozarreal.service.StreetsService;
 
 import java.util.*;
 
@@ -68,5 +69,4 @@ public class StreetServiceImplTests {
         Assertions.assertEquals("id2", streets.get(1).getId());
         Assertions.assertEquals("Street 2", streets.get(1).getName());
     }
-
 }
